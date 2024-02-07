@@ -8,24 +8,22 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import java_mybatis.common.MyBatisManager;
 import model.MemberVO;
 
-public class Step20_InsertTest {
+public class Step30_UpdateTest {
 
   public static void main(String[] args) {
 
     SqlSessionFactory sqlSessionFactory = MyBatisManager.getSqlSessionFactory();
-    SqlSession sqlSession = sqlSessionFactory.openSession(false);// 만약 true로 하면 autocommit 처리됨
+    SqlSession sqlSession = sqlSessionFactory.openSession(false);
 
     MemberVO vo = new MemberVO();
     vo.setMemberid("duly");
-    vo.setName("둘리");
-    vo.setPw(1234);
-    vo.setPhone("010-2222-2222");
-    vo.setEmail("duly@a.com");
+    vo.setName("아기공룡둘리");
+    vo.setPw(2222);
+    vo.setPhone("010-7294-3724");
+    vo.setEmail("duly@nate.com");
     vo.setRegtime(Calendar.getInstance().getTime());
 
-    // sqlSession.insert("네임스페이스.구문id", MemberVO타입의 객체)
-    int result = sqlSession.insert("member.save", vo);
-    System.out.println("result = " + result);
+    int result = sqlSession.update("member.update", vo);
 
     /*
      * 마이바티즈 트랜잭션 처리
@@ -42,5 +40,6 @@ public class Step20_InsertTest {
 
     sqlSession.close();
 
-  }// main
+  }
+
 }

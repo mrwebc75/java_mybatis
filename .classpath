@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/mybatis-3.5.15.jar"/>
 	<classpathentry kind="lib" path="J:/kdt_ready/setup/sts-bundle/sts-3.9.18.RELEASE/lombok.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-j-8.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
