@@ -42,17 +42,29 @@
 		from member where memberid = #{memberid};
 	</select>
 	
-	<!-- resultType="_int" 도 가능함 -->
+	<!-- select구문은 resultType을 반드시 작성해야 한다. resultType="_int" 도 가능함 -->
 	<select id="countById" resultType="Integer">
-		select count(memberid) from member;
+		select count(#{fieldName}) from member;
 	</select>
 	
 	
-	<select id="findAll">
+	<select id="findAll" resultType="mVo">
 		select 
 			<include refid="baseColumns" />
 		from member;
 	</select>
+	
+	<select id="selectMulty" resultType="mVo">
+		select * from member 
+		where memberid in 
+		
+		<!-- ('duly1','duly3','duly5')  -->
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+		
+	</select>
+	
 	
 </mapper>
 

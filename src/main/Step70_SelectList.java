@@ -1,24 +1,42 @@
 package main;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java_mybatis.common.MyBatisManager;
+import model.MemberVO;
 
-public class Step60_CountMember {
+public class Step70_SelectList {
 
   public static void main(String[] args) {
 
     SqlSessionFactory sqlSessionFactory = MyBatisManager.getSqlSessionFactory();
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
 
-    int countMember = sqlSession.selectOne("member.countById", "phone");
-
-    if (countMember > 0) {
-      System.out.printf("가입된 회원수는 %d명 입니다.", countMember);
-    } else {
-      System.out.println("가입된 회원이 없습니다.");
+    List<MemberVO> list = sqlSession.selectList("member.findAll");
+    
+    if(list.size()>0) {
+      for(MemberVO vo : list) {
+        System.out.println(vo.toString());
+      }
+    }else {
+      System.out.println("조회된 데이터가 없습니다.");
     }
 
   }// main
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
