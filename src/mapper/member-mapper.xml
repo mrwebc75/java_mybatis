@@ -4,5 +4,12 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="member">
-
+	<!-- 만약 resultType이 기본타입일 경우 지정하지 않아도 마이바티즈 내부에서 알아서 처리한다. -->
+	
+	<!-- resultType을 mVo로 작성할 수 있는 이유는 mybatis-config.xml에서 typeAlias 설정을 했기 때문이다. -->
+	<insert id="save" parameterType="mVo">
+		insert into member (memberid, name, pw, phone, email, regtime) 
+		values (#{memberid}, #{name}, #{pw}, #{phone}, #{email}, #{regtime})
+	</insert>
+	
 </mapper>
