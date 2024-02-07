@@ -24,6 +24,7 @@ public class Step30_UpdateTest {
     vo.setRegtime(Calendar.getInstance().getTime());
 
     int result = sqlSession.update("member.update", vo);
+    System.out.println("result = " + result);
 
     /*
      * 마이바티즈 트랜잭션 처리

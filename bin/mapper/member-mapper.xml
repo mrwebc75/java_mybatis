@@ -20,7 +20,46 @@
 			phone = #{phone},
 			email = #{email},
 			regtime = #{regtime}
-		where memberid = #{memberid}
+		
+		<if test="memberid != null">
+			where memberid = #{memberid}
+		</if>
 	</update>
 	
+
+	<delete id="deleteById">
+		delete from member where memberid = #{memberid};
+	</delete>	
+	
+	<!-- 공통구문에 대한 변수역할 -->
+	<sql id="baseColumns">
+		memberid, name, pw, phone, email, regtime
+	</sql>
+	
+	<select id="getOne" resultType="mVo">
+		select  
+			<include refid="baseColumns" />
+		from member where memberid = #{memberid};
+	</select>
+	
+	<!-- resultType="_int" 도 가능함 -->
+	<select id="countById" resultType="Integer">
+		select count(memberid) from member;
+	</select>
+	
+	
+	<select id="findAll">
+		select 
+			<include refid="baseColumns" />
+		from member;
+	</select>
+	
 </mapper>
+
+
+
+
+
+
+
+

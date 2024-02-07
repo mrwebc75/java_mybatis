@@ -1,30 +1,20 @@
 package main;
 
-import java.util.Calendar;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java_mybatis.common.MyBatisManager;
-import model.MemberVO;
 
-public class Step20_InsertTest {
+public class Step40_DeleteTest {
 
   public static void main(String[] args) {
 
     SqlSessionFactory sqlSessionFactory = MyBatisManager.getSqlSessionFactory();
-    SqlSession sqlSession = sqlSessionFactory.openSession(false);// 만약 true로 하면 autocommit 처리됨
+    SqlSession sqlSession = sqlSessionFactory.openSession(false);
 
-    MemberVO vo = new MemberVO();
-    vo.setMemberid("duly5");
-    vo.setName("둘리5");
-    vo.setPw(1234);
-    vo.setPhone("010-2222-2222");
-    vo.setEmail("duly@a.com");
-    vo.setRegtime(Calendar.getInstance().getTime());
+    String memberid = "duly";
+    int result = sqlSession.delete("member.deleteById", memberid);
 
-    // sqlSession.insert("네임스페이스.구문id", MemberVO타입의 객체)
-    int result = sqlSession.insert("member.save", vo);
     System.out.println("result = " + result);
 
     /*
@@ -42,5 +32,5 @@ public class Step20_InsertTest {
 
     sqlSession.close();
 
-  }// main
+  }
 }
