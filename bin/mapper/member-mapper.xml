@@ -54,19 +54,64 @@
 		from member;
 	</select>
 	
+	<!-- 80-1번예제 -->
 	<select id="selectMulty" resultType="mVo">
 		select * from member 
 		where memberid in 
 		
 		<!-- ('duly1','duly3','duly5')  -->
+		<!-- 배열을 받으면 무조건 collection 속성의 값을 array 로 지정해야 한다. -->
 		<foreach collection="array" item="id" open="(" close=")" separator=",">
 			#{id}
-		</foreach>
-		
+		</foreach>		
 	</select>
 	
+	<!-- 80-2번예제 -->
+	<select id="pagingList_list" resultType="mVo">
+		select 
+			<include refid="baseColumns" />
+		from member order by regtime desc limit 
+		
+		<!-- List을 받으면 무조건 collection 속성의 값을 list 로 지정해야 한다. -->
+		<foreach collection="list" item="num" separator=",">
+			#{num}
+		</foreach>
+	</select>
+	
+	<!-- 80-3번예제 -->
+	<select id="pagingList_mapList" resultType="mVo">
+		select 
+			<include refid="baseColumns" />
+		from member order by regtime desc limit
+		
+		<!-- List를 Map을 통해 받으면 collection 속성의 값을 반드시 맵의 key값으로 지정해야 한다. -->
+		<foreach collection="listLimit" item="num" separator=",">
+			#{num}
+		</foreach>
+	</select>
 	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
